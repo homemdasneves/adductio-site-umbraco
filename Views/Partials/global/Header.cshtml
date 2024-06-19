@@ -1,0 +1,44 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Services
+@inject ILocalizationService LocalizationService
+@{
+  var currentCulture = Model.GetCultureFromDomains();
+  var currentCultureShortIsoCode = currentCulture?.Substring(0, 2);
+  var languages = LocalizationService.GetAllLanguages();
+}
+
+<header class="px-4 pt-6 pb-4">
+  <div class="flex items-center container mx-auto border-b pb-4 border-adductioSoftGrey">
+    <a href="/@currentCultureShortIsoCode" class="logo">
+      <img src="./assets/logo.svg" alt="Adductio">
+    </a>
+    <nav class="main-nav ml-6">
+      <a class="text-adductioBlue uppercase font-bold text-sm py-4 px-6" href="/quem-somos.html">Quem Somos</a>
+      <a class="text-adductioBlue uppercase font-bold text-sm py-4 px-6 inline-flex items-center"
+        href="/servicos.html">Serviços <img src="./assets/expand.svg" alt="expand" class="ml-3"></a>
+      <ul class="sub-nav hidden">
+        <li><a href="/servico.html">Revisão de Projetos</a></li>
+        <li><a href="/servico.html">Procurement</a></li>
+        <li><a href="/servico.html">Apoio à Elaboração de Estudos e Projectos</a></li>
+        <li><a href="/servico.html">Simulação e Modelação</a></li>
+        <li><a href="/servico.html">Classificação e Certificação Ambiental de Empreendimentos</a></li>
+        <li><a href="/servico.html">Elaboração de Estudos e Projectos Globais</a></li>
+        <li><a href="/servico.html">Formação</a></li>
+        <li><a href="/servico.html">Trabalhos de Campo</a></li>
+        <li><a href="/servico.html">Geologia Ambiental</a></li>
+      </ul>
+    </nav>
+    <a href="/contactos.html"
+      class="ml-auto mr-6 uppercase py-4 px-6 border-2 border-adductioOrange text-adductioOrange font-bold text-sm">Contacte-nos</a>
+    <button
+      class="mr-4 text-adductioBlue inline-flex items-center uppercase font-bold text-sm py-4 px-6 lang-selector">@currentCultureShortIsoCode
+      <img src="./assets/expand.svg" alt="expand" class="ml-3"></button>
+    <ul>
+      @foreach (var language in languages)
+      {
+        var shortIsoCode = language.IsoCode.Substring(0, 2);
+        <li><a href="/@shortIsoCode">@shortIsoCode</a></li>
+      }
+    </ul>
+  </div>
+</header>

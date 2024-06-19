@@ -1,0 +1,39 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+  var email = @Model.Value("emailFooter");
+  var phone = @Model.Value("phoneFooter");
+}
+
+<footer class="border-b-4 border-adductioOrange pt-16 pb-10">
+  <div class="container mx-auto px-3 lg:px-0">
+    <div class="border-b border-adductioSoftGrey pb-6 flex flex-col sm:flex-row items-center justify-between">
+      <a href="/" class="logo">
+        <img src="./assets/logo.svg" alt="Adductio">
+      </a>
+      <nav class="mt-4 sm:mt-0">
+        <a class="text-adductioBlue underline font-medium" href="mailto:@email<">@email</a>
+        <span>|</span>
+        <a class="text-adductioBlue underline font-medium" href="tel:@phone">@phone</a>
+      </nav>
+    </div>
+    <div class="border-b border-adductioSoftGrey py-6">
+      <a class="text-adductioBlue font-bold" href="/servicos.html">@Umbraco.GetDictionaryValue("services")</a>
+      <ul class="flex flex-wrap mt-4">
+        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Revisão de Projetos</a></li>
+        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Procurement</a></li>
+        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Apoio à Elaboração de Estudos e Projectos</a></li>
+        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Simulação e Modelação</a></li>
+        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Classificação e Certificação Ambiental de Empreendimentos</a></li>
+        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Elaboração de Estudos e Projectos Globais</a></li>
+        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Formação</a></li>
+        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Trabalhos de Campo</a></li>
+        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Geologia Ambiental</a></li>
+      </ul>
+    </div>
+    <div class="border-b border-adductioSoftGrey py-6">
+      <a class="text-adductioBlue font-bold" href="/contactos.html">Contactos</a>
+    </div>
+    <p class="mt-6 text-sm text-adductioMiddleGrey">@Model.Value("copy")</p>
+  </div>
+</footer>
