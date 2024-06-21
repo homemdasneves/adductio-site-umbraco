@@ -1,0 +1,34 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+  var contactsPage = Umbraco.Content(Guid.Parse("8e854860-af9c-4269-b051-1025f569863d"));
+  var formId = contactsPage.Value<string>("contactForm");
+  var parsedFormId = Guid.Empty;
+  
+  if (formId != null)
+  {
+    parsedFormId = Guid.Parse(formId);
+  }
+}
+
+<section class="bg-adductioBlue form">
+  <div class="container mx-auto px-3 lg:px-0 pt-20 pb-10">
+    <h2 class="text-white text-5xl font-bold">@contactsPage.Value("contactFormTitle")</h2>
+    <div class="lg:grid grid-cols-2 gap-10 mt-10">
+      <div class="">
+        @await Component.InvokeAsync("RenderForm", new { formId = @parsedFormId, theme = "default", includeScripts = false })
+      </div>
+      <div>
+        <div class="flex align-middle bg-adductioPaleBlue p-4">
+          <img src="./assets/icon-maps.svg" alt="mail" class="mr-4">
+          <div>@contactsPage.Value("contactAddress")</div>
+        </div>
+        <div class="flex align-middle bg-adductioPaleBlue p-4 mt-4">
+          <img src="./assets/icon-email.svg" alt="mail" class="mr-4">
+          <a href="mailto:@contactsPage.Value("contactEmail")" class="inline-block text-adductioOrange">@contactsPage.Value("contactEmail")</a>
+        </div>
+        <p class="text-white text-xs mt-5">@contactsPage.Value("privacyText")</p>
+      </div>
+    </div>
+  </div>
+</section>

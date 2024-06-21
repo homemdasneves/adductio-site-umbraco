@@ -1,15 +1,22 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
 @{
-  var email = @Model.Value("emailFooter");
-  var phone = @Model.Value("phoneFooter");
+  var currentCulture = Model.GetCultureFromDomains();
+  var currentCultureShortIsoCode = currentCulture?.Substring(0, 2);
+  var homepage = Model.AncestorsOrSelf(1).FirstOrDefault();
+  var email = @homepage.Value("emailFooter");
+  var phone = @homepage.Value("phoneFooter");
+  var services = @Umbraco.GetDictionaryValue("services");
+  var servicesSlug = services?.ToLower().Replace("ç", "c");
+  var contacts = @Umbraco.GetDictionaryValue("contacts");
+  var contactsSlug = contacts?.ToLower();
 }
 
 <footer class="border-b-4 border-adductioOrange pt-16 pb-10">
   <div class="container mx-auto px-3 lg:px-0">
     <div class="border-b border-adductioSoftGrey pb-6 flex flex-col sm:flex-row items-center justify-between">
       <a href="/" class="logo">
-        <img src="./assets/logo.svg" alt="Adductio">
+        <img src="/assets/logo.svg" alt="Adductio">
       </a>
       <nav class="mt-4 sm:mt-0">
         <a class="text-adductioBlue underline font-medium" href="mailto:@email<">@email</a>
@@ -18,21 +25,24 @@
       </nav>
     </div>
     <div class="border-b border-adductioSoftGrey py-6">
-      <a class="text-adductioBlue font-bold" href="/servicos.html">@Umbraco.GetDictionaryValue("services")</a>
+      <p class="text-adductioBlue font-bold">@services</p>
       <ul class="flex flex-wrap mt-4">
-        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Revisão de Projetos</a></li>
-        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Procurement</a></li>
-        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Apoio à Elaboração de Estudos e Projectos</a></li>
-        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Simulação e Modelação</a></li>
-        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Classificação e Certificação Ambiental de Empreendimentos</a></li>
-        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Elaboração de Estudos e Projectos Globais</a></li>
-        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Formação</a></li>
-        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Trabalhos de Campo</a></li>
-        <li class="lg:w-1/4 pr-6 mb-4"><a class="text-sm text-adductioBlue underline" href="/servico.html">Geologia Ambiental</a></li>
+        @{
+          var servicesList = Umbraco.Content(Guid.Parse("c53352a1-f0b6-427c-87cd-df9a8f2c3e72"))
+          .Children().Where(x => x.IsVisible());
+
+          foreach (var service in servicesList)
+          {
+            <li class="lg:w-1/4 pr-6 mb-4">
+              <a class="text-sm text-adductioBlue underline"
+                href="/@currentCultureShortIsoCode/@servicesSlug/@service.UrlSegment">@service.Name</a>
+            </li>
+          }
+        }
       </ul>
     </div>
     <div class="border-b border-adductioSoftGrey py-6">
-      <a class="text-adductioBlue font-bold" href="/contactos.html">Contactos</a>
+      <a class="text-adductioBlue font-bold" href="/@currentCultureShortIsoCode/@contactsSlug">@contacts</a>
     </div>
     <p class="mt-6 text-sm text-adductioMiddleGrey">@Model.Value("copy")</p>
   </div>
