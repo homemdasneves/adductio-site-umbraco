@@ -1,9 +1,18 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Service>
-@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
 @{
 	Layout = "Master.cshtml";
+
+	var image = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("serviceImage");
+  var imageUrl = image?.Url();
 }
 
-
-<h1>@Model.Name</h1>
+<section>
+	<h1>@Model.Name</h1>
+	<h2>@Model.Value("serviceSubTitle")</h2>
+	@if (!string.IsNullOrEmpty(imageUrl))
+    {
+      <img src="@imageUrl" alt="Adductio" />
+    }
+	<div>@Model.Value("serviceText")</div>
+</section>

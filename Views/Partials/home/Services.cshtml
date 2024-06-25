@@ -1,0 +1,36 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+  var currentCulture = Model.GetCultureFromDomains();
+  var currentCultureShortIsoCode = currentCulture?.Substring(0, 2);
+  var services = @Umbraco.GetDictionaryValue("services");
+  var servicesSlug = services?.ToLower().Replace("ç", "c");
+}
+
+<section class="mt-14">
+  <div class="container mx-auto px-3 lg:px-0">
+    <h2 class="text-adductioBlue font-bold text-4xl">Os nossos serviços</h2>
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+      @{
+        var servicesList = Umbraco.Content(Guid.Parse("c53352a1-f0b6-427c-87cd-df9a8f2c3e72"))
+        .Children().Where(x => x.IsVisible());
+
+        foreach (var service in servicesList)
+        {
+          var image = service.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("serviceThumbnail");
+          var imageUrl = image?.Url();
+
+          <div class="">
+            <a href="/@currentCultureShortIsoCode/@servicesSlug/@service.UrlSegment">
+              <img class="w-full rounded-t-md" src="@imageUrl" alt="@service.Name">
+              <div class="p-5 h-32 bg-adductioSoftGrey rounded-b-md">
+                <h4 class="text-adductioBlue font-bold text-2xl overflow-hidden line-clamp-2 text-ellipsis">@service.Name
+                </h4>
+              </div>
+            </a>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</section>

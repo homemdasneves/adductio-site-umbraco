@@ -1,6 +1,9 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Services>
-@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
+
 @{
-	Layout = null;
+	var currentCulture = Model.GetCultureFromDomains();
+  var currentCultureShortIsoCode = currentCulture?.Substring(0, 2);
+
+	Context.Response.Redirect("/" + currentCultureShortIsoCode);
 }
