@@ -3,13 +3,14 @@
 @{
   var currentCulture = Model.GetCultureFromDomains();
   var currentCultureShortIsoCode = currentCulture?.Substring(0, 2);
+  var ourservices = @Umbraco.GetDictionaryValue("ourservices");
   var services = @Umbraco.GetDictionaryValue("services");
   var servicesSlug = services?.ToLower().Replace("ç", "c");
 }
 
 <section class="mt-14">
   <div class="container mx-auto px-3 lg:px-0">
-    <h2 class="text-adductioBlue font-bold text-4xl">Os nossos serviços</h2>
+    <h2 class="text-adductioBlue font-bold text-4xl">@ourservices</h2>
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
       @{
         var servicesList = Umbraco.Content(Guid.Parse("c53352a1-f0b6-427c-87cd-df9a8f2c3e72"))

@@ -1,0 +1,35 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
+@using Umbraco.Cms.Core.Models.Blocks;
+
+@{
+  var clients = @Umbraco.GetDictionaryValue("clients");
+}
+
+<section class="mt-14">
+  <div class="container mx-auto px-3 lg:px-0">
+    <h2 class="text-adductioBlue font-bold text-4xl">@clients</h2>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
+      @{
+
+        var blocks = Model.Value<IEnumerable<BlockListItem>>("clientsList");
+
+        if (blocks != null)
+        {
+          foreach (var block in blocks)
+          {
+            var content = block.Content;
+            var image = content.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("clientLogo");
+            var imageUrl = image?.Url();
+            var clientTitle = content.Value("clientTitle");
+
+            <div class="text-center">
+              <img class="w-full" src="@imageUrl" alt="@clientTitle">
+              <h4 class="text-adductioBlue font-bold text-base mt-8">@clientTitle</h4>
+              <p class="font-medium text-xs">@content.Value("clientCategory")</p>
+            </div>
+          }
+        }
+      }
+    </div>
+  </div>
+</section>
