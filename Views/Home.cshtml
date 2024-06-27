@@ -8,5 +8,9 @@
 @await Html.PartialAsync("home/Hero")
 @await Html.PartialAsync("home/Services")
 @await Html.PartialAsync("home/Clients")
-@await Html.PartialAsync("global/Who")
+@await Html.PartialAsync(
+	"global/Who",
+	Model, new ViewDataDictionary(ViewData) {
+    { "className", "bg-adductioSoftGrey pt-20 pb-10" }
+})
 @await Html.PartialAsync("global/ContactForm")

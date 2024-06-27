@@ -10,15 +10,16 @@
   var currentCultureShortIsoCode = currentCulture?.Substring(0, 2);
   var contacts = @Umbraco.GetDictionaryValue("contacts");
   var contactsSlug = contacts?.ToLower();
+  var className = ViewData["className"];
 }
 
-<section class="bg-adductioSoftGrey mt-20">
-  <div class="container mx-auto px-3 lg:px-0 pt-20 pb-10">
-    <div class="grid grid-cols-5">
-      <div class="col-span-2">
+<section class="mt-14 @className">
+  <div class="container mx-auto px-3 lg:px-0">
+    <div class="grid md:grid-cols-5">
+      <div class="md:col-span-2">
         <img class="w-full rounded-sm" src="@imageUrl" alt="Adductio">
       </div>
-      <div class="col-span-3 lg:pl-6">
+      <div class="md:col-span-3 pt-6">
         <p class="font-bold text-adductioOrange">@whoPage.Value("whoSubTitle")</p>
         <h3 class="font-bold text-adductioBlue text-2xl mt-2 mb-6">@whoPage.Value("whoTitle")</h3>
         <div class="text-adductioBlue leading-normal mb-4">@whoPage.Value("whoText")</div>

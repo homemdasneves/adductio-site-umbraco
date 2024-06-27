@@ -13,7 +13,7 @@
 
 <section class="bg-adductioBlue form">
   <div class="container mx-auto px-3 lg:px-0 pt-20 pb-10">
-    <h2 class="text-white text-5xl font-bold">@contactsPage.Value("contactFormTitle")</h2>
+    <h2 class="text-white text-4xl font-bold">@contactsPage.Value("contactFormTitle")</h2>
     <div class="lg:grid grid-cols-2 gap-10 mt-10">
       <div class="">
         @await Component.InvokeAsync("RenderForm", new { formId = @parsedFormId, theme = "default", includeScripts = false })

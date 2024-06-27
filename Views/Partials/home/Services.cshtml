@@ -22,8 +22,8 @@
           var imageUrl = image?.Url();
 
           <div class="">
-            <a href="/@currentCultureShortIsoCode/@servicesSlug/@service.UrlSegment">
-              <img class="w-full rounded-t-md" src="@imageUrl" alt="@service.Name">
+            <a class="group" href="/@currentCultureShortIsoCode/@servicesSlug/@service.UrlSegment">
+              <img class="w-full rounded-t-md group-hover:opacity-50" src="@imageUrl" alt="@service.Name">
               <div class="p-5 h-32 bg-adductioSoftGrey rounded-b-md">
                 <h4 class="text-adductioBlue font-bold text-2xl overflow-hidden line-clamp-2 text-ellipsis">@service.Name
                 </h4>
