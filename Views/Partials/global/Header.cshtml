@@ -4,48 +4,59 @@
 @{
   var currentCulture = Model.GetCultureFromDomains();
   var currentCultureShortIsoCode = currentCulture?.Substring(0, 2);
+
   var languages = LocalizationService.GetAllLanguages();
+  
   var services = @Umbraco.GetDictionaryValue("services");
   var servicesSlug = services?.ToLower().Replace("ç", "c");
   var contacts = @Umbraco.GetDictionaryValue("contacts");
   var contactsSlug = contacts?.ToLower();
   var whoarewe = @Umbraco.GetDictionaryValue("whoarewe");
   var whoareweSlug = whoarewe?.ToLower().Replace(" ", "-");
+
+  var servicesGuid = Guid.Parse("c53352a1-f0b6-427c-87cd-df9a8f2c3e72");
+  var servicesList = Umbraco.Content(servicesGuid)?.Children().Where(x => x.IsVisible());
 }
 
 <header class="px-4 pt-6 pb-4">
-  <div class="flex items-center container mx-auto border-b pb-4 border-adductioSoftGrey">
+  <div class="relative flex items-center container mx-auto border-b pb-4 border-adductioSoftGrey">
     <a href="/@currentCultureShortIsoCode" class="logo">
       <img src="/assets/logo.svg" alt="Adductio">
     </a>
     <nav class="main-nav ml-6">
-      <a class="text-adductioBlue uppercase font-bold text-sm py-4 px-6" href="/@currentCultureShortIsoCode/@whoareweSlug">@whoarewe</a>
-      <a class="text-adductioBlue uppercase font-bold text-sm py-4 px-6 inline-flex items-center">@services <img src="/assets/expand.svg" alt="expand" class="ml-3"></a>
-      <ul class="sub-nav hidden">
-        <li><a href="/servico.html">Revisão de Projetos</a></li>
-        <li><a href="/servico.html">Procurement</a></li>
-        <li><a href="/servico.html">Apoio à Elaboração de Estudos e Projectos</a></li>
-        <li><a href="/servico.html">Simulação e Modelação</a></li>
-        <li><a href="/servico.html">Classificação e Certificação Ambiental de Empreendimentos</a></li>
-        <li><a href="/servico.html">Elaboração de Estudos e Projectos Globais</a></li>
-        <li><a href="/servico.html">Formação</a></li>
-        <li><a href="/servico.html">Trabalhos de Campo</a></li>
-        <li><a href="/servico.html">Geologia Ambiental</a></li>
-      </ul>
+      <a class="text-adductioBlue uppercase font-bold text-sm py-4 px-6"
+        href="/@currentCultureShortIsoCode/@whoareweSlug">@whoarewe</a>
+      <span class="inline-block relative">
+        <a class="btn-subnav text-adductioBlue uppercase font-bold text-sm py-4 px-6 inline-flex items-center">@services <img
+            src="/assets/expand.svg" alt="expand" class="ml-3"></a>
+        <ul class="sub-nav hidden absolute top-10 left-0 bg-white w-max shadow-md p-3 rounded-md">
+          @{
+            if (servicesList != null)
+            {
+              foreach (var service in servicesList)
+              {
+                <li><a href="/@currentCultureShortIsoCode/@servicesSlug/@service.UrlSegment">@service.Name</a></li>
+              }
+            }
+          }
+        </ul>
+      </span>
     </nav>
     <a class="ml-auto mr-6 uppercase py-4 px-6 border-2 border-adductioOrange text-adductioOrange font-bold text-sm"
       href="/@currentCultureShortIsoCode/@contactsSlug">
       @contacts
     </a>
     <button
-      class="mr-4 text-adductioBlue inline-flex items-center uppercase font-bold text-sm py-4 px-6 lang-selector">@currentCultureShortIsoCode
+      class="btn-lang-switch mr-4 text-adductioBlue inline-flex items-center uppercase font-bold text-sm py-4 px-6 lang-selector">@currentCultureShortIsoCode
       <img src="/assets/expand.svg" alt="expand" class="ml-3"></button>
-    <ul>
+    <nav class="lang-list hidden absolute top-12 right-10 bg-white w-14 shadow-md p-3 rounded-md text-center">
       @foreach (var language in languages)
       {
         var shortIsoCode = language.IsoCode.Substring(0, 2);
-        <li><a href="/@shortIsoCode">@shortIsoCode</a></li>
+        var isCurrentLanguage = shortIsoCode == currentCultureShortIsoCode;
+
+        <a href="/@shortIsoCode" class="text-adductioBlue uppercase font-bold text-sm block mt-2 @isCurrentLanguage ? 'cursor-not-allowed opacity-50' : ''">@shortIsoCode</a>
       }
-    </ul>
+    </nav>
   </div>
 </header>

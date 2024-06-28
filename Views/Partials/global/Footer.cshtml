@@ -1,15 +1,19 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
-
 @{
   var currentCulture = Model.GetCultureFromDomains();
   var currentCultureShortIsoCode = currentCulture?.Substring(0, 2);
+
   var homepage = Model.AncestorsOrSelf(1).FirstOrDefault();
-  var email = @homepage.Value("emailFooter");
-  var phone = @homepage.Value("phoneFooter");
+  var email = @homepage?.Value("emailFooter");
+  var phone = @homepage?.Value("phoneFooter");
+  
   var services = @Umbraco.GetDictionaryValue("services");
   var servicesSlug = services?.ToLower().Replace("ç", "c");
   var contacts = @Umbraco.GetDictionaryValue("contacts");
   var contactsSlug = contacts?.ToLower();
+
+  var servicesGuid = Guid.Parse("c53352a1-f0b6-427c-87cd-df9a8f2c3e72");
+  var servicesList = Umbraco.Content(servicesGuid)?.Children().Where(x => x.IsVisible());
 }
 
 <footer class="border-b-4 border-adductioOrange pt-16 pb-10">
@@ -28,15 +32,15 @@
       <p class="text-adductioBlue font-bold">@services</p>
       <ul class="flex flex-wrap mt-4">
         @{
-          var servicesList = Umbraco.Content(Guid.Parse("c53352a1-f0b6-427c-87cd-df9a8f2c3e72"))
-          .Children().Where(x => x.IsVisible());
-
-          foreach (var service in servicesList)
+          if (servicesList != null)
           {
-            <li class="lg:w-1/4 pr-6 mb-4">
-              <a class="text-sm text-adductioBlue underline"
-                href="/@currentCultureShortIsoCode/@servicesSlug/@service.UrlSegment">@service.Name</a>
-            </li>
+            foreach (var service in servicesList)
+            {
+              <li class="lg:w-1/4 pr-6 mb-4">
+                <a class="text-sm text-adductioBlue underline"
+                  href="/@currentCultureShortIsoCode/@servicesSlug/@service.UrlSegment">@service.Name</a>
+              </li>
+            }
           }
         }
       </ul>
