@@ -11,20 +11,20 @@
   }
 }
 
-<section class="bg-adductioBlue form">
+<section class="bg-adductioBlue form form-contact">
   <div class="container mx-auto px-3 lg:px-0 pt-20 pb-10">
     <h2 class="text-white text-4xl font-bold">@contactsPage.Value("contactFormTitle")</h2>
     <div class="lg:grid grid-cols-2 gap-10 mt-10">
       <div class="">
         @await Component.InvokeAsync("RenderForm", new { formId = @parsedFormId, theme = "default", includeScripts = false })
       </div>
-      <div>
-        <div class="flex align-middle bg-adductioPaleBlue p-4">
-          <img src="./assets/icon-maps.svg" alt="mail" class="mr-4">
+      <div class="pt-10 lg:pt-0">
+        <div class="flex items-center bg-adductioPaleBlue p-4">
+          <img src="/assets/icon-maps.svg" alt="mail" class="w-12 mr-4">
           <div>@contactsPage.Value("contactAddress")</div>
         </div>
-        <div class="flex align-middle bg-adductioPaleBlue p-4 mt-4">
-          <img src="./assets/icon-email.svg" alt="mail" class="mr-4">
+        <div class="flex items-center bg-adductioPaleBlue p-4 mt-4">
+          <img src="/assets/icon-email.svg" alt="mail" class="w-12 mr-4">
           <a href="mailto:@contactsPage.Value("contactEmail")" class="inline-block text-adductioOrange">@contactsPage.Value("contactEmail")</a>
         </div>
         <p class="text-white text-xs mt-5">@contactsPage.Value("privacyText")</p>

@@ -48,5 +48,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		}
 
 		// properties
+
+		///<summary>
+		/// Form
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.3.2+696a711")]
+		[ImplementPropertyType("trainingForm")]
+		public virtual global::System.Nullable<global::System.Guid> TrainingForm => this.Value<global::System.Nullable<global::System.Guid>>(_publishedValueFallback, "trainingForm");
 	}
 }

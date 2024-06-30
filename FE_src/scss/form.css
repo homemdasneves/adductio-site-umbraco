@@ -1,0 +1,82 @@
+.form {
+
+  input[type=text],
+  input[type=email],
+  input[type=number],
+  textarea {
+    width: 100%;
+    height: 48px;
+    background: #ffffff;
+    border: 1px solid #6e707f;
+    border-radius: 2px;
+    padding: 0 16px;
+    font-size: 14px;
+  }
+
+  textarea {
+    height: 120px;
+    padding-top: 10px;
+    resize: none;
+  }
+
+  .checkboxlist,
+  .radiobuttonlist {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .btn.primary {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 24px;
+    width: 120px;
+    height: 46px;
+    background: #F15A31;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+
+  .umbraco-forms-field+.umbraco-forms-field {
+    margin-top: 1rem;
+  }
+
+  .umbraco-forms-field.agree {
+    margin-top: 0;
+  }
+
+  .umbraco-forms-hidden {
+    display: none;
+  }
+
+  p,
+  label,
+  .field-validation-error {
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .field-validation-error {
+    display: block;
+    margin-top: 4px;
+    color: red;
+  }
+
+  &.form-training label,
+  &.form-training legend {
+    color: #2D2B70;
+  }
+
+  &.form-training label {
+    margin: 0 16px 0 4px;
+  }
+}

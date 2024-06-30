@@ -6,7 +6,7 @@
   var currentCultureShortIsoCode = currentCulture?.Substring(0, 2);
 
   var languages = LocalizationService.GetAllLanguages();
-  
+
   var services = @Umbraco.GetDictionaryValue("services");
   var servicesSlug = services?.ToLower().Replace("ç", "c");
   var contacts = @Umbraco.GetDictionaryValue("contacts");
@@ -18,45 +18,76 @@
   var servicesList = Umbraco.Content(servicesGuid)?.Children().Where(x => x.IsVisible());
 }
 
-<header class="px-4 pt-6 pb-4">
+<header class="px-4 pt-4 md:pt-6 pb-4">
   <div class="relative flex items-center container mx-auto border-b pb-4 border-adductioSoftGrey">
     <a href="/@currentCultureShortIsoCode" class="logo">
       <img src="/assets/logo.svg" alt="Adductio">
     </a>
-    <nav class="main-nav ml-6">
-      <a class="text-adductioBlue uppercase font-bold text-sm py-4 px-6"
-        href="/@currentCultureShortIsoCode/@whoareweSlug">@whoarewe</a>
-      <span class="inline-block relative">
-        <a class="btn-subnav text-adductioBlue uppercase font-bold text-sm py-4 px-6 inline-flex items-center">@services <img
-            src="/assets/expand.svg" alt="expand" class="ml-3"></a>
-        <ul class="sub-nav hidden absolute top-10 left-0 bg-white w-max shadow-md p-3 rounded-md">
-          @{
-            if (servicesList != null)
-            {
-              foreach (var service in servicesList)
+    <div class="nav-mobile sm:ml-6 sm:flex items-center justify-end flex-1">
+      <nav class="main-nav">
+        <a class="text-adductioBlue uppercase font-bold text-sm py-4 px-6"
+          href="/@currentCultureShortIsoCode/@whoareweSlug">@whoarewe</a>
+        <span class="inline-block relative text-center">
+          <a
+            class="btn-subnav text-adductioBlue uppercase font-bold text-sm py-4 px-6 inline-flex items-center cursor-pointer">@services
+            <img src="/assets/expand.svg" alt="expand" class="ml-3"></a>
+          <ul class="sub-nav hidden absolute z-50 top-10 left-0 bg-white w-max shadow-md p-3 rounded-md">
+            @{
+              if (servicesList != null)
               {
-                <li><a href="/@currentCultureShortIsoCode/@servicesSlug/@service.UrlSegment">@service.Name</a></li>
+                foreach (var service in servicesList)
+                {
+                  <li><a class="text-adductioBlue text-sm underline"
+                      href="/@currentCultureShortIsoCode/@servicesSlug/@service.UrlSegment">@service.Name</a></li>
+                }
               }
             }
-          }
-        </ul>
-      </span>
-    </nav>
-    <a class="ml-auto mr-6 uppercase py-4 px-6 border-2 border-adductioOrange text-adductioOrange font-bold text-sm"
-      href="/@currentCultureShortIsoCode/@contactsSlug">
-      @contacts
-    </a>
-    <button
-      class="btn-lang-switch mr-4 text-adductioBlue inline-flex items-center uppercase font-bold text-sm py-4 px-6 lang-selector">@currentCultureShortIsoCode
-      <img src="/assets/expand.svg" alt="expand" class="ml-3"></button>
-    <nav class="lang-list hidden absolute top-12 right-10 bg-white w-14 shadow-md p-3 rounded-md text-center">
-      @foreach (var language in languages)
-      {
-        var shortIsoCode = language.IsoCode.Substring(0, 2);
-        var isCurrentLanguage = shortIsoCode == currentCultureShortIsoCode;
+          </ul>
+        </span>
+      </nav>
+      <a class="mt-20 md:mt-0 md:ml-auto mr-6 uppercase py-4 px-6 border-2 border-adductioOrange text-adductioOrange font-bold text-sm"
+        href="/@currentCultureShortIsoCode/@contactsSlug">
+        @contacts
+      </a>
+      <button
+        class="btn-lang-switch text-adductioBlue inline-flex items-center uppercase font-bold text-sm py-4 px-6 lang-selector">@currentCultureShortIsoCode
+        <img src="/assets/expand.svg" alt="expand" class="ml-3"></button>
+      <nav class="lang-list hidden md:absolute top-12 right-10 bg-white w-14 shadow-md p-3 rounded-md text-center">
+        @foreach (var language in languages)
+        {
+          var shortIsoCode = language.IsoCode.Substring(0, 2);
+          var isCurrentLanguage = shortIsoCode == currentCultureShortIsoCode;
 
-        <a href="/@shortIsoCode" class="text-adductioBlue uppercase font-bold text-sm block mt-2 @isCurrentLanguage ? 'cursor-not-allowed opacity-50' : ''">@shortIsoCode</a>
-      }
-    </nav>
+          <a href="/@shortIsoCode"
+            class="text-adductioBlue uppercase font-bold text-sm block mt-2 @isCurrentLanguage ? 'cursor-not-allowed opacity-50' : ''">@shortIsoCode</a>
+        }
+      </nav>
+    </div>
+    <button class="btn-mobile absolute -top-1 right-0 group md:hidden">
+      <div
+        class="relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all duration-200">
+        <div
+          class="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden">
+          <div
+            class="bg-slate-700 h-[2px] w-7 transform transition-all duration-300 origin-left group-[.is-open]:translate-x-10">
+          </div>
+          <div
+            class="bg-slate-700 h-[2px] w-7 rounded transform transition-all duration-300 group-[.is-open]:translate-x-10 delay-75">
+          </div>
+          <div
+            class="bg-slate-700 h-[2px] w-7 transform transition-all duration-300 origin-left group-[.is-open]:translate-x-10 delay-150">
+          </div>
+          <div
+            class="absolute items-center justify-between transform transition-all duration-500 top-2.5 -translate-x-10 group-[.is-open]:translate-x-0 flex w-0 group-[.is-open]:w-12">
+            <div
+              class="absolute bg-slate-700 h-[2px] w-5 transform transition-all duration-500 rotate-0 delay-300 group-[.is-open]:rotate-45">
+            </div>
+            <div
+              class="absolute bg-slate-700 h-[2px] w-5 transform transition-all duration-500 -rotate-0 delay-300 group-[.is-open]:-rotate-45">
+            </div>
+          </div>
+        </div>
+      </div>
+    </button>
   </div>
 </header>

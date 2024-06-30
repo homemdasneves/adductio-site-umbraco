@@ -6,7 +6,8 @@
   var homepage = Model.AncestorsOrSelf(1).FirstOrDefault();
   var email = @homepage?.Value("emailFooter");
   var phone = @homepage?.Value("phoneFooter");
-  
+  var copy = @homepage?.Value("copyFooter");
+
   var services = @Umbraco.GetDictionaryValue("services");
   var servicesSlug = services?.ToLower().Replace("ç", "c");
   var contacts = @Umbraco.GetDictionaryValue("contacts");
@@ -48,6 +49,6 @@
     <div class="border-b border-adductioSoftGrey py-6">
       <a class="text-adductioBlue font-bold" href="/@currentCultureShortIsoCode/@contactsSlug">@contacts</a>
     </div>
-    <p class="mt-6 text-sm text-adductioMiddleGrey">@Model.Value("copy")</p>
+    <p class="mt-6 text-sm text-adductioMiddleGrey">@copy</p>
   </div>
 </footer>

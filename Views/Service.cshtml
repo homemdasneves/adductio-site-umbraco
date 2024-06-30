@@ -4,8 +4,12 @@
 @{
 	Layout = "Master.cshtml";
 
+	var currentCulture = Model.GetCultureFromDomains();
+  var currentCultureShortIsoCode = currentCulture?.Substring(0, 2);
+
 	var homepage = Umbraco.GetDictionaryValue("homepage");
 	var services = Umbraco.GetDictionaryValue("services");
+	
 	var image = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("serviceImage");
 	var imageUrl = image?.Url();
 }
@@ -14,7 +18,7 @@
 		<nav class="text-adductioBlue text-xs" aria-label="Breadcrumb">
 			<ol class="flex flex-wrap gap-2">
 				<li>
-					<a href="/" class="underline">@homepage</a>
+					<a href="/@currentCultureShortIsoCode" class="underline">@homepage</a>
 				</li>
 				<li class="mx-1">
 					<span>/</span>

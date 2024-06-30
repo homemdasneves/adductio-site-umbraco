@@ -1,0 +1,50 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  min-width: 320px;
+}
+
+p + p {
+  margin-top: 1rem;
+}
+
+img {
+  width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+  .nav-mobile {
+    position: fixed;
+    z-index: 1000;
+    top: 89px;
+    left: 100%;
+    width: 100%;
+    height: calc(100dvh - 89px);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    transform: translate(0, 0);
+    transition: transform 0.3s ease-in-out;
+    &.is-open {
+      transform: translate(-100%, 0);
+    }
+  }
+  .main-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+
+    .sub-nav {
+      display: flex !important;
+      flex-direction: column;
+      position: relative;
+      box-shadow: none;
+      top: 0;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}

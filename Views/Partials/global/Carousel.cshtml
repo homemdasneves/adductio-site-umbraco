@@ -2,29 +2,33 @@
 @using Umbraco.Cms.Core.Models;
 
 <section class="splide mt-14 mb-20">
-  <div class="container mx-auto px-3 lg:px-0">
-    <div class="splide__track">
-      <ul class="splide__list">
-        @{
+  <div class="container mx-auto flex justify-center px-3 lg:px-0">
+    <div class="basis-2/3">
+      <div class="relative">
+        <div class="splide__track">
+          <ul class="splide__list">
+            @{
 
-          var images = Model.Value<IEnumerable<MediaWithCrops>>("serviceImages");
-          if (images != null && images.Any())
-          {
-            foreach (var image in images)
-            {
-              <li class="splide__slide">
-                <img src="@image.MediaUrl()" alt="" />
-              </li>
+              var images = Model.Value<IEnumerable<MediaWithCrops>>("serviceImages");
+              if (images != null && images.Any())
+              {
+                foreach (var image in images)
+                {
+                  <li class="splide__slide">
+                    <img src="@image.MediaUrl()" alt="" />
+                  </li>
+                }
+              }
             }
-          }
-        }
-      </ul>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 <script>
-  document.addEventListener( 'DOMContentLoaded', function() {
-    var splide = new Splide( '.splide' );
+  document.addEventListener('DOMContentLoaded', function () {
+    var splide = new Splide('.splide');
     splide.mount();
-  } );
+  });
 </script>
