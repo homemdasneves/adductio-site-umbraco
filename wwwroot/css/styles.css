@@ -558,11 +558,17 @@ video {
 
 .container{
   width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 @media (min-width: 640px){
   .container{
     max-width: 640px;
+    padding-right: 2rem;
+    padding-left: 2rem;
   }
 }
 
@@ -575,12 +581,16 @@ video {
 @media (min-width: 1024px){
   .container{
     max-width: 1024px;
+    padding-right: 4rem;
+    padding-left: 4rem;
   }
 }
 
 @media (min-width: 1280px){
   .container{
     max-width: 1280px;
+    padding-right: 5rem;
+    padding-left: 5rem;
   }
 }
 
@@ -618,8 +628,8 @@ video {
   right: 0px;
 }
 
-.right-10{
-  right: 2.5rem;
+.right-4{
+  right: 1rem;
 }
 
 .top-10{
@@ -1036,6 +1046,10 @@ video {
   padding-bottom: 2.5rem;
 }
 
+.pb-20{
+  padding-bottom: 5rem;
+}
+
 .pb-4{
   padding-bottom: 1rem;
 }
@@ -1267,6 +1281,17 @@ img {
     padding-top: 10px;
     resize: none;
   }
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    display: inline-block;
+    background-color: transparent;
+    border: 1px solid #fff;
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+  }
   .checkboxlist,
   .radiobuttonlist {
     display: flex;
@@ -1289,7 +1314,7 @@ img {
     border-radius: 2px;
     font-size: 12px;
     text-transform: uppercase;
-    margin-top: 20px;
+    margin-top: 32px;
     cursor: pointer;
   }
   .umbraco-forms-field+.umbraco-forms-field {
@@ -1413,12 +1438,20 @@ img {
     padding-left: 1.5rem;
   }
 
+  .md\:pr-32{
+    padding-right: 8rem;
+  }
+
   .md\:pt-0{
     padding-top: 0px;
   }
 
   .md\:pt-6{
     padding-top: 1.5rem;
+  }
+
+  .md\:text-left{
+    text-align: left;
   }
 }
 

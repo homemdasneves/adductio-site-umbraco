@@ -18,16 +18,16 @@
   var servicesList = Umbraco.Content(servicesGuid)?.Children().Where(x => x.IsVisible());
 }
 
-<header class="px-4 pt-4 md:pt-6 pb-4">
-  <div class="relative flex items-center container mx-auto border-b pb-4 border-adductioSoftGrey">
+<header class="pt-4 md:pt-6">
+  <div class="flex items-center container border-b pb-4 border-adductioSoftGrey">
     <a href="/@currentCultureShortIsoCode" class="logo">
       <img src="/assets/logo.svg" alt="Adductio">
     </a>
-    <div class="nav-mobile sm:ml-6 sm:flex items-center justify-end flex-1">
+    <div class="nav-mobile relative sm:ml-6 sm:flex items-center justify-end flex-1">
       <nav class="main-nav">
         <a class="text-adductioBlue uppercase font-bold text-sm py-4 px-6"
           href="/@currentCultureShortIsoCode/@whoareweSlug">@whoarewe</a>
-        <span class="inline-block relative text-center">
+        <span class="inline-block relative text-center md:text-left">
           <a
             class="btn-subnav text-adductioBlue uppercase font-bold text-sm py-4 px-6 inline-flex items-center cursor-pointer">@services
             <img src="/assets/expand.svg" alt="expand" class="ml-3"></a>
@@ -52,7 +52,7 @@
       <button
         class="btn-lang-switch text-adductioBlue inline-flex items-center uppercase font-bold text-sm py-4 px-6 lang-selector">@currentCultureShortIsoCode
         <img src="/assets/expand.svg" alt="expand" class="ml-3"></button>
-      <nav class="lang-list hidden md:absolute top-12 right-10 bg-white w-14 shadow-md p-3 rounded-md text-center">
+      <nav class="lang-list hidden md:absolute top-12 right-4 bg-white w-14 shadow-md p-3 rounded-md text-center">
         @foreach (var language in languages)
         {
           var shortIsoCode = language.IsoCode.Substring(0, 2);

@@ -5,12 +5,14 @@
   var imageUrl = image?.Url();
 }
 
-<section>
-  <div class="container mx-auto flex flex-col items-center justify-center py-20 px-3 lg:px-0" style="background-color: #@Model.Value("backgroundColor");">
+<section class="mt-14">
+  <div class="container">
+  <div class="flex rounded-md flex-col items-center justify-center py-20 px-3" style="background-color: #@Model.Value("backgroundColor");">
     @if (!string.IsNullOrEmpty(imageUrl))
     {
       <img src="@imageUrl" alt="Adductio" class="max-w-[50%] md:max-w-80" />
     }
     <div class="mt-4 text-white text-center text-2xl font-medium leading-relaxed">@Model.Value("text")</div>
+  </div>
   </div>
 </section>

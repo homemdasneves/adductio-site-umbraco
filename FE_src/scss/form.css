@@ -18,6 +18,15 @@
     padding-top: 10px;
     resize: none;
   }
+  input[type="checkbox"] {
+    appearance: none;
+    display: inline-block;
+    background-color: transparent;
+    border: 1px solid #fff;
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+  }
 
   .checkboxlist,
   .radiobuttonlist {
@@ -42,7 +51,7 @@
     border-radius: 2px;
     font-size: 12px;
     text-transform: uppercase;
-    margin-top: 20px;
+    margin-top: 32px;
     cursor: pointer;
   }
 
