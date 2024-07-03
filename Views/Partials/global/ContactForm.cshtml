@@ -1,9 +1,14 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
 @{
+  var currentModel = Model;
   var contactsPage = Umbraco.Content(Guid.Parse("8e854860-af9c-4269-b051-1025f569863d"));
-  var formId = contactsPage.Value<string>("contactForm");
+  var formId = contactsPage?.Value<string>("contactForm");
   var parsedFormId = Guid.Empty;
+  var isContactPage = currentModel.Id == contactsPage?.Id;
+  var classNameSection = isContactPage ? "bg-white" : "bg-adductioBlue";
+  var classNameContainer = isContactPage ? "" : "py-20";
+  var classNameText = isContactPage ? "text-adductioBlue" : "text-white";
   
   if (formId != null)
   {
@@ -11,9 +16,13 @@
   }
 }
 
-<section class="bg-adductioBlue">
-  <div class="container py-20">
-    <h2 class="text-white text-4xl font-bold">@contactsPage.Value("contactFormTitle")</h2>
+<section class="@classNameSection">
+  <div class="container @classNameContainer">
+    @{ if (!isContactPage)
+    {
+      <h1 class="text-white text-4xl font-bold">@contactsPage?.Name</h1>
+    }
+    }
     <div class="lg:grid grid-cols-2 gap-10 mt-10">
       <div class="form form-contact">
         @await Component.InvokeAsync("RenderForm", new { formId = @parsedFormId, theme = "default", includeScripts = false })
@@ -21,13 +30,13 @@
       <div class="pt-10 lg:pt-0">
         <div class="flex items-center bg-adductioPaleBlue p-4">
           <img src="/assets/icon-maps.svg" alt="mail" class="w-12 mr-4">
-          <div class="text-adductioBlue">@contactsPage.Value("contactAddress")</div>
+          <div class="text-adductioBlue">@contactsPage?.Value("contactAddress")</div>
         </div>
         <div class="flex items-center bg-adductioPaleBlue p-4 mt-4">
           <img src="/assets/icon-email.svg" alt="mail" class="w-12 mr-4">
-          <a href="mailto:@contactsPage.Value("contactEmail")" class="inline-block text-adductioOrange">@contactsPage.Value("contactEmail")</a>
+          <a href="mailto:@contactsPage?.Value("contactEmail")" class="inline-block text-adductioOrange">@contactsPage?.Value("contactEmail")</a>
         </div>
-        <p class="text-white text-xs mt-5">@contactsPage.Value("privacyText")</p>
+        <p class="@classNameText text-xs mt-5">@contactsPage?.Value("privacyText")</p>
       </div>
     </div>
   </div>

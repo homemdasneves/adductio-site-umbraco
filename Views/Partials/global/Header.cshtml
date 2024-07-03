@@ -18,8 +18,8 @@
   var servicesList = Umbraco.Content(servicesGuid)?.Children().Where(x => x.IsVisible());
 }
 
-<header class="pt-4 md:pt-6">
-  <div class="flex items-center container border-b pb-4 border-adductioSoftGrey">
+<header class="pt-4 lg:pt-6">
+  <div class="container relative flex items-center border-b pb-4 border-adductioSoftGrey">
     <a href="/@currentCultureShortIsoCode" class="logo">
       <img src="/assets/logo.svg" alt="Adductio">
     </a>
@@ -27,7 +27,7 @@
       <nav class="main-nav">
         <a class="text-adductioBlue uppercase font-bold text-sm py-4 px-6"
           href="/@currentCultureShortIsoCode/@whoareweSlug">@whoarewe</a>
-        <span class="inline-block relative text-center md:text-left">
+        <span class="inline-block relative text-center lg:text-left">
           <a
             class="btn-subnav text-adductioBlue uppercase font-bold text-sm py-4 px-6 inline-flex items-center cursor-pointer">@services
             <img src="/assets/expand.svg" alt="expand" class="ml-3"></a>
@@ -45,14 +45,14 @@
           </ul>
         </span>
       </nav>
-      <a class="mt-20 md:mt-0 md:ml-auto mr-6 uppercase py-4 px-6 border-2 border-adductioOrange text-adductioOrange font-bold text-sm"
+      <a class="mt-20 lg:mt-0 lg:ml-auto mr-6 uppercase py-4 px-6 border-2 border-adductioOrange text-adductioOrange font-bold text-sm"
         href="/@currentCultureShortIsoCode/@contactsSlug">
         @contacts
       </a>
       <button
         class="btn-lang-switch text-adductioBlue inline-flex items-center uppercase font-bold text-sm py-4 px-6 lang-selector">@currentCultureShortIsoCode
         <img src="/assets/expand.svg" alt="expand" class="ml-3"></button>
-      <nav class="lang-list hidden md:absolute top-12 right-4 bg-white w-14 shadow-md p-3 rounded-md text-center">
+      <nav class="lang-list hidden lg:absolute top-12 right-4 bg-white w-14 shadow-md p-3 rounded-md text-center">
         @foreach (var language in languages)
         {
           var shortIsoCode = language.IsoCode.Substring(0, 2);
@@ -63,7 +63,7 @@
         }
       </nav>
     </div>
-    <button class="btn-mobile absolute -top-1 right-0 group md:hidden">
+    <button class="btn-mobile absolute -top-1 right-0 group lg:hidden">
       <div
         class="relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all duration-200">
         <div

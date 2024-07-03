@@ -19,23 +19,30 @@
     resize: none;
   }
   input[type="checkbox"] {
-    appearance: none;
+    //appearance: none;
     display: inline-block;
     background-color: transparent;
-    border: 1px solid #fff;
+    @apply border rounded-sm border-adductioBlue;
     width: 14px;
     height: 14px;
     margin-right: 6px;
+
+    .bg-adductioBlue & {
+      @apply border-white;
+    }
   }
 
   .checkboxlist,
   .radiobuttonlist {
+    margin-top: 10px;
+    @media screen(lg) {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 10px;
+    }
+    
   }
 
   .btn.primary {
@@ -55,8 +62,8 @@
     cursor: pointer;
   }
 
-  .umbraco-forms-field+.umbraco-forms-field {
-    margin-top: 1rem;
+  .umbraco-forms-field {
+    @apply mt-4;
   }
 
   .umbraco-forms-field.agree {
@@ -70,8 +77,12 @@
   p,
   label,
   .field-validation-error {
-    color: #fff;
+    @apply text-adductioBlue;
     font-size: 14px;
+
+    .bg-adductioBlue & {
+      @apply text-white;
+    }
   }
 
   .field-validation-error {
@@ -87,5 +98,43 @@
 
   &.form-training label {
     margin: 0 16px 0 4px;
+  }
+}
+
+.umbraco-forms-field {
+  .form-training & {
+    @apply mt-8;
+  }
+  &.age {
+    @apply w-1/2 max-w-24;
+    @media screen(lg) {
+      width: 10%;
+      float: left;
+    }
+  }
+  &.employer,
+  &.training {
+    @media screen(lg) {
+      width: calc(45% - 24px);
+      float: left;
+      margin-left: 24px;
+    }
+  }
+  &.whatareas {
+    @media screen(lg) {
+      clear: left;
+      .umbraco-forms-legend {
+        @apply pt-8;
+      }
+    }
+  }
+  &.areasofinterest,
+  &.coursesuggestions {
+    @apply mt-3;
+  }
+  &.comments {
+    label {
+      @apply block text-base mb-2;
+    }
   }
 }

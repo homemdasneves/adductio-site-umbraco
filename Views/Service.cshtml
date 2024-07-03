@@ -1,17 +1,21 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
+﻿@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Service>
+@using Umbraco.Cms.Core.Models
+@using Umbraco.Extensions;
 
 @{
 	Layout = "Master.cshtml";
 
 	var currentCulture = Model.GetCultureFromDomains();
-  var currentCultureShortIsoCode = currentCulture?.Substring(0, 2);
+	var currentCultureShortIsoCode = currentCulture?.Substring(0, 2);
 
 	var homepage = Umbraco.GetDictionaryValue("homepage");
 	var services = Umbraco.GetDictionaryValue("services");
 
 	var image = Model.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("serviceImage");
 	var imageUrl = image?.Url();
+
+	var serviceForm = Model.Value<IEnumerable<Link>>("serviceForm");
 }
 <section class="mt-6 mb-10">
 	<div class="container">
@@ -47,6 +51,14 @@
 			}
 		</div>
 		<div class="text-adductioBlue mt-10">@Model.Value("serviceText")</div>
+		@if (serviceForm != null && serviceForm.Any())
+		{
+			@foreach (var link in serviceForm)
+			{
+				<a class="bg-adductioOrange font-bold uppercase text-white text-xs py-4 px-6 inline-block mt-6 mb-10" href="@link.Url"
+					target="@(link.Target ?? "_self")">@Umbraco.GetDictionaryValue("knowmore")</a>
+			}
+		}
 	</div>
 </section>
 @await Html.PartialAsync("global/Carousel")

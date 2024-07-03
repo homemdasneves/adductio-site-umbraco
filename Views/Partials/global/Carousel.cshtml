@@ -1,34 +1,36 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
 @using Umbraco.Cms.Core.Models;
 
-<section class="splide mt-14 mb-20">
-  <div class="container flex justify-center">
-    <div class="basis-2/3">
-      <div class="relative">
-        <div class="splide__track">
-          <ul class="splide__list">
-            @{
+@{
 
-              var images = Model.Value<IEnumerable<MediaWithCrops>>("serviceImages");
-              if (images != null && images.Any())
-              {
-                foreach (var image in images)
-                {
-                  <li class="splide__slide">
-                    <img src="@image.MediaUrl()" alt="" />
-                  </li>
+  var images = Model.Value<IEnumerable<MediaWithCrops>>("serviceImages");
+  if (images != null && images.Any())
+  {
+    <section class="splide mt-14 mb-20">
+      <div class="container flex justify-center">
+        <div class="md:basis-2/3">
+          <div class="relative">
+            <div class="splide__track">
+              <ul class="splide__list">
+                @{
+                  foreach (var image in images)
+                  {
+                    <li class="splide__slide">
+                      <img src="@image.MediaUrl()" alt="" />
+                    </li>
+                  }
                 }
-              }
-            }
-          </ul>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var splide = new Splide('.splide');
-    splide.mount();
-  });
-</script>
+    </section>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var splide = new Splide('.splide');
+        splide.mount();
+      });
+    </script>
+  }
+}

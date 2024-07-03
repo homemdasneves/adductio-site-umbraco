@@ -1,0 +1,27 @@
+.splide__pagination {
+  bottom: 0;
+  top: calc(100% + 1rem);
+
+  .splide__pagination__page {
+    @apply bg-adductioMiddleGrey;
+    opacity: 1;
+    &.is-active {
+      @apply bg-adductioOrange;
+      @apply w-8;
+      @apply rounded-lg;
+      transform: none;
+    }
+  }
+}
+.splide__arrows {
+  .splide__arrow {
+    background-color: #fff;
+    opacity: 1;
+
+    svg {
+      @apply fill-adductioBlue;
+      height: 0.6em;
+      width: 0.6em;
+    }
+  }
+}
