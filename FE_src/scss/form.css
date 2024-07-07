@@ -31,7 +31,21 @@
       @apply border-white;
     }
   }
-
+  select {
+    width: 100%;
+    height: 48px;
+    background: #ffffff;
+    border: 1px solid #6e707f;
+    border-radius: 2px;
+    padding: 0 16px;
+    font-size: 14px;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%236e707f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 24px;
+  }
+  
   .checkboxlist,
   .radiobuttonlist {
     margin-top: 10px;
@@ -98,6 +112,11 @@
 
   &.form-training label {
     margin: 0 16px 0 4px;
+  }
+  &.form-contact {
+    .name {
+      @apply mt-0;
+    }
   }
 }
 

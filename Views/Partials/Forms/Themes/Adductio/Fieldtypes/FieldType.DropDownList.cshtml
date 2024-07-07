@@ -1,0 +1,33 @@
+@model Umbraco.Forms.Web.Models.FieldViewModel;
+@using Umbraco.Forms.Web;
+@{
+    var settings = Model.AdditionalSettings;
+    var autocompleteAttribute = Model.GetSettingValue<string>("AutocompleteAttribute", string.Empty);
+    var allowMultiple = settings.ContainsKey("AllowMultipleSelections") && settings["AllowMultipleSelections"].ToLower() == "true";
+    var selectPrompt = Model.GetSettingValue<string>("SelectPrompt", string.Empty);
+    var defaultValue = Model.GetSettingValue<string>("DefaultValue", string.Empty);
+    if (string.IsNullOrEmpty(selectPrompt))
+    {
+        selectPrompt = Model.GetSettingValue<string>("SelectPrompt", defaultValue);
+    }
+    var selectPromptExists = Model.PreValues.Any(x => x.Value == selectPrompt);
+}
+
+<select class="@Html.GetFormFieldClass(Model.FieldTypeName)"
+        name="@Model.Name"
+        id="@Model.Id"
+        data-umb="@Model.Id"
+        @if (string.IsNullOrEmpty(autocompleteAttribute) == false) { <text>autocomplete="@autocompleteAttribute"</text> }
+        @if (allowMultiple) { <text> multiple </text> }
+        @if (Model.Mandatory) { <text> data-val="true" data-val-required="@Model.RequiredErrorMessage" aria-required="true" </text> }
+        @if (!string.IsNullOrEmpty(Model.ToolTip)) { <text> aria-describedby="@(Model.Id)_description" </text> }>
+    @if (!allowMultiple && !selectPromptExists)
+    {
+        <option value="">@selectPrompt</option>
+    }
+    @foreach (var pv in Model.PreValues)
+    {
+        var selectedValue = Model.ContainsValue(pv.Value) || selectPrompt == pv.Value ? "selected" : string.Empty;
+        @: <option value="@pv.Value" @selectedValue>@pv.Caption</option>
+    }
+</select>

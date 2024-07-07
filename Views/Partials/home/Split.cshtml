@@ -1,0 +1,22 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+  var image = Model?.Value<Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent>("splitImage");
+  var imageUrl = image?.Url();
+  var className = ViewData["className"];
+}
+
+<section class="mt-14 @className">
+  <div class="container">
+    <div class="grid md:grid-cols-5">
+      <div class="md:col-span-2">
+        <img class="w-full rounded-sm" src="@imageUrl" alt="Adductio">
+      </div>
+      <div class="md:col-span-3 pt-6 md:pt-0 md:pl-6 lg:pr-32">
+        <p class="font-bold text-adductioOrange">@Model?.Value("subTitle")</p>
+        <h3 class="font-bold text-adductioBlue text-2xl mt-2 mb-6">@Model?.Value("title")</h3>
+        <div class="text-adductioBlue leading-normal mb-4">@Model?.Value("splitText")</div>
+      </div>
+    </div>
+  </div>
+</section>
