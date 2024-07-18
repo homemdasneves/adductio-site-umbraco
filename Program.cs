@@ -7,9 +7,6 @@ builder.CreateUmbracoBuilder()
     .AddComposers()
     .Build();
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-builder.webHost.UseUrls($"http://*:{port}");
-
 WebApplication app = builder.Build();
 
 await app.BootUmbracoAsync();
