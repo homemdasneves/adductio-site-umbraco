@@ -477,3 +477,5 @@ appsettings-schema.*.json
 
 # Media files
 /wwwroot/media/
+/media
+/umbraco/Data/AdductioWeb.sqlite.db

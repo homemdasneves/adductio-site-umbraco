@@ -1,15 +1,24 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
 @{
-  var modelName = Model.Name;
-  var title = modelName == "Home" ? "Adductio" : "Adductio - " + modelName;
+    var modelName = Model.Name;
+    var title = modelName == "Home" ? "Adductio" : "Adductio - " + modelName;
+
+    var requestHost = Context.Request.HttpContext.Request.Host.Host;
+    var noIndex = requestHost.Contains("azurewebsites") || requestHost.Contains("localhost");
 }
 
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>@title</title>
-  <link rel="stylesheet" href="/css/styles.css" />
-  <link href="/css/splide.min.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@title</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link href="/css/splide.min.css" rel="stylesheet">
+
+    @if (noIndex)
+    {
+        <meta name="robots" content="noindex, nofollow">
+    }
+
 </head>
