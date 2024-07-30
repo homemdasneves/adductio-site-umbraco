@@ -1,0 +1,57 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage;
+@using Umbraco.Cms.Core.Models;
+@using Umbraco.Cms.Core.Models.Blocks;
+
+@{
+  var blockList = Model.Value<IEnumerable<BlockListItem>>("homeCarousel");
+  
+  if (blockList != null)
+  {
+    <section class="splide mt-14 mb-20">
+      <div class="container flex justify-center">
+        <div class="">
+          <div class="relative">
+            <div class="splide__track">
+              <ul class="splide__list">
+                @foreach (var item in blockList) {
+                    
+                    var content = item.Content;
+                    var title = content.Value<string>("carouselItemTitle");
+                    var text = content.Value<string>("carouselItemText");
+                    var itemLink = content.Value<IEnumerable<Link>>("carouselItemLink");
+                    var image = content.Value<IPublishedContent>("carouselItemImage");
+                    
+                    
+                    <li class="splide__slide">
+                      @if (image != null)
+                      {
+                      <img class="relative z-10" src="@image.Url()" alt="@title" />
+                      }
+                      <div class="relative z-20 py-4 px-6 bg-adductioBlue">
+                        <h2 class="text-white text-2xl font-bold">@title</h2>
+                        <p class="text-white">@text</p>
+                        @if (itemLink != null && itemLink.Any())
+                        {
+                          @foreach (var link in itemLink)
+                          {
+                            <a class="bg-adductioOrange font-bold uppercase text-white text-xs py-4 px-6 inline-block mt-6" href="@link.Url"
+                              target="@(link.Target ?? "_self")">@link.Name</a>
+                          }
+                        }
+                      </div>
+                    </li>
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var splide = new Splide('.splide');
+        splide.mount();
+      });
+    </script>
+  }
+}

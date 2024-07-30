@@ -12,6 +12,12 @@ img {
 }
 
 @media screen and (max-width: 1023px) {
+  .nav__is-open {
+    overflow: hidden;
+    .nav-mobile {
+      transform: translate(-100%, 0);
+    }
+  }
   .nav-mobile {
     position: fixed;
     z-index: 1000;
@@ -26,9 +32,6 @@ img {
     align-items: center;
     transform: translate(0, 0);
     transition: transform 0.3s ease-in-out;
-    &.is-open {
-      transform: translate(-100%, 0);
-    }
   }
   .main-nav {
     display: flex;

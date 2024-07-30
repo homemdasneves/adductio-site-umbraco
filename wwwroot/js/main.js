@@ -3,7 +3,7 @@ $(document).ready(function() {
 
   $('.btn-mobile').click(function() {
     $(this).toggleClass('is-open');
-    $('.nav-mobile').toggleClass('is-open');
+    $('body').toggleClass('nav__is-open');
   });
   $('.btn-lang-switch').click(function() {
     $('.lang-list').toggleClass('hidden');

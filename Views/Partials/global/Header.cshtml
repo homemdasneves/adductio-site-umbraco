@@ -31,13 +31,13 @@
           <a
             class="btn-subnav text-adductioBlue uppercase font-bold text-sm py-4 px-6 inline-flex items-center cursor-pointer">@services
             <img src="/assets/expand.svg" alt="expand" class="ml-3"></a>
-          <ul class="sub-nav hidden absolute z-50 top-10 left-0 bg-white w-max shadow-md p-3 rounded-md">
+          <ul class="sub-nav hidden absolute z-50 top-10 left-0 bg-white w-max shadow-md p-6 rounded-md">
             @{
               if (servicesList != null)
               {
                 foreach (var service in servicesList)
                 {
-                  <li><a class="text-adductioBlue text-sm underline"
+                  <li><a class="text-adductioBlue text-sm leading-8 hover:underline"
                       href="/@currentCultureShortIsoCode/@servicesSlug/@service.UrlSegment">@service.Name</a></li>
                 }
               }
