@@ -50,14 +50,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Background Color
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.3.2+696a711")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("backgroundColor")]
-		public virtual string BackgroundColor => this.Value<string>(_publishedValueFallback, "backgroundColor");
-
-		///<summary>
 		/// Clients List
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.3.2+696a711")]
@@ -70,8 +62,8 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.3.2+696a711")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("copy")]
-		public virtual string Copy => this.Value<string>(_publishedValueFallback, "copy");
+		[ImplementPropertyType("copyFooter")]
+		public virtual string CopyFooter => this.Value<string>(_publishedValueFallback, "copyFooter");
 
 		///<summary>
 		/// Email
@@ -82,12 +74,12 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string EmailFooter => this.Value<string>(_publishedValueFallback, "emailFooter");
 
 		///<summary>
-		/// Image
+		/// Carousel
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.3.2+696a711")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("image")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops Image => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "image");
+		[ImplementPropertyType("homeCarousel")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel HomeCarousel => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "homeCarousel");
 
 		///<summary>
 		/// Phone
@@ -120,14 +112,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("subTitle")]
 		public virtual string SubTitle => this.Value<string>(_publishedValueFallback, "subTitle");
-
-		///<summary>
-		/// Text
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.3.2+696a711")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("text")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Text => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "text");
 
 		///<summary>
 		/// Title

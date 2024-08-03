@@ -5,7 +5,7 @@
 	Layout = "Master.cshtml";
 }
 
-@await Html.PartialAsync("home/Hero")
+@await Html.PartialAsync("home/HomeCarousel", Model)
 @await Html.PartialAsync("home/Services")
 @await Html.PartialAsync("home/Clients")
 @await Html.PartialAsync(
