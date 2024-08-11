@@ -1,0 +1,65 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.LandingPage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adductio</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: rgb(45 43 112);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .tagline {
+            margin: 10px 0;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.2em;
+            color: rgb(45 43 112);
+        }
+
+            .contact a {
+                text-decoration: none;
+                color: rgb(45 43 112);
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/assets/logo.png" alt="Logo">
+        <div class="tagline">Ambiente e Informática</div>
+        <div class="contact">
+            <a href="mailto:info@adduct.io">info@adduct.io</a>
+            <span>|</span>
+            <span>+351 914 776 138</span>
+        </div>
+    </div>
+</body>
+</html>
