@@ -479,3 +479,4 @@ appsettings-schema.*.json
 /wwwroot/media/
 /media
 /umbraco/Data/AdductioWeb.sqlite.db
+/umbraco/Data/*
