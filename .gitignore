@@ -480,3 +480,6 @@ appsettings-schema.*.json
 /media
 /umbraco/Data/AdductioWeb.sqlite.db
 /umbraco/Data/*
+!umbraco/Data/UmbracoForms/
+!umbraco/Data/UmbracoForms/PreValueTextFiles/
+!umbraco/Data/UmbracoForms/PreValueTextFiles/**
