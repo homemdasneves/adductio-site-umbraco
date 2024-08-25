@@ -157,3 +157,9 @@
     }
   }
 }
+.umbraco-forms-submitmessage {
+  @apply text-adductioBlue text-xl;
+}
+.bg-adductioBlue .umbraco-forms-submitmessage {
+  @apply text-white text-xl;
+}
