@@ -23,7 +23,7 @@
             var clientTitle = content.Value("clientTitle");
 
             <div class="text-center pb-10">
-              <img class="w-full" src="@imageUrl" alt="@clientTitle">
+              <img class="w-full aspect-square object-cover" src="@imageUrl" alt="@clientTitle">
               <h4 class="text-adductioBlue font-bold text-base mt-8">@clientTitle</h4>
               <p class="font-medium text-xs">@content.Value("clientCategory")</p>
             </div>
